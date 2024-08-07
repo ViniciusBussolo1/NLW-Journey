@@ -1,17 +1,21 @@
 // biome-ignore lint: <explanation>
 import { FormEvent } from "react";
 
-import { X, User, Plus } from "lucide-react";
+import { X, User } from "lucide-react";
 import { Button } from "../../components/button";
 
 interface ConfirmTripModalProps {
   closeConfirmTripModal: () => void;
   createTrip: (event: FormEvent<HTMLFormElement>) => void;
+  setOwnerName: (name: string) => void;
+  setOwnerEmail: (eamil: string) => void;
 }
 
 export function ConfirmTripModal({
   closeConfirmTripModal,
   createTrip,
+  setOwnerEmail,
+  setOwnerName,
 }: ConfirmTripModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
@@ -54,6 +58,7 @@ export function ConfirmTripModal({
               placeholder="Seu nome completo"
               className="bg-transparent text-lg placeholder:text-zinc-400 
               w-40 outline-none flex-1"
+              onChange={(e) => setOwnerName(e.target.value)}
             />
           </div>
 
@@ -68,12 +73,12 @@ export function ConfirmTripModal({
               placeholder="Seu e-mail pessoal"
               className="bg-transparent text-lg placeholder:text-zinc-400 
               w-40 outline-none flex-1"
+              onChange={(e) => setOwnerEmail(e.target.value)}
             />
           </div>
 
           <Button type="submit" variant="primary" size="full">
             Confirmar criação da viagem
-            <Plus className="size-5" />
           </Button>
         </form>
       </div>
